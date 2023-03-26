@@ -1,32 +1,33 @@
-#include<iostream>
-#include<string.h>
-using namespace std ;
+#include <iostream>
+#include <algorithm>
 
-int main(){
+using namespace std;
 
+int main() {
+    int t;
+    cin >> t;
 
+    while (t--) {
+        int n;
+        cin >> n;
 
+        int a[n];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
 
-int i, a, countA=0, countD=0 ;
-cin>>a;
-string s ;
-cin>>s;
-for(i=0; i<a ; i++){
-    if(s[i]=='A'){
-        countA++;
+        sort(a, a + n); // sort the array in ascending order
+
+        int curr = a[0], ans = 1; // initialize curr as the first element and ans as 1
+        for (int i = 1; i < n; i++) {
+            if (a[i] > curr + 1) { // if the next element is not consecutive
+                ans++; // increment the number of sets
+                curr = a[i]; // update curr to the next element
+            }
+        }
+
+        cout << ans << endl;
     }
-    else if (s[i]='D'){
-        countD++;
-    }
-}
-if(countA>countD){
-    cout<<"Anton";
-}
-else if (countA<countD){
-    cout<<"Danik";
-}
-else if (countA==countD){
- cout<<"Friendship";
-}
-return 0 ;
+
+    return 0;
 }

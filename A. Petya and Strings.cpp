@@ -1,28 +1,43 @@
-#include<iostream>
-#include<string.h>
-using namespace std ;
+#include <iostream>
+#include <string>
+#include <algorithm>
 
-int main (){
-int i ;
-string a , b ;
-cin >> a>>b ;
+using namespace std;
 
-for( i=0 ;i<a.size();i++){
-    a[i]=towlower(a[i]);
-    b[i]= towlower(b[i]);
-}
-if(a[i]==b[i]){
-    cout<<"0"<< endl;
-}
-else {
-     for( i=0 ;i<a.size();i++){
-    if (a[i]<b[i]){
-    cout<<"-1"<< endl;
-}
-if(a[i]>b[i]){
-    cout<<"1"<< endl;
-}
-}
-}
-return 0 ;
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        int cnt = count(s.begin(), s.end(), '1');
+        if (cnt == 0 || cnt == n) {
+
+            cout << "Yes" << endl;
+        } else if (cnt % 2 == 0) {
+
+            cout << "Yes" << endl;
+        } else {
+            bool found = false;
+            for (int i = 0; i < n; i++) {
+                if (s[i] == '1') {
+                    int j = i+1;
+                    while (j < n && s[j] == '1') j++;
+                    if (j == cnt) {
+                        found = true;
+                        break;
+                    }
+                    i = j;
+                }
+            }
+            if (found) {
+                cout << "Yes" << endl;
+            } else {
+                cout << "No" << endl;
+            }
+        }
+    }
+    return 0;
 }

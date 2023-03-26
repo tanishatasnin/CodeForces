@@ -8,3 +8,4 @@ int main()
                s[0] = towupper(s[0]);
                cout << s;
 }
+
